@@ -1,5 +1,7 @@
-﻿using DevFreela.API.Models;
+﻿
+using DevFreela.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace DevFreela.API.Controllers
 {
@@ -9,6 +11,15 @@ namespace DevFreela.API.Controllers
 
     public class ProjectsController :ControllerBase
     {
+        private readonly FreelanceTotalCostConfig _config;
+        public ProjectsController(IOptions<FreelanceTotalCostConfig> options)
+        {
+          //  dsdasd
+        }
+
+
+
+
         // GET api/projects?search=crm
 
         [HttpGet]

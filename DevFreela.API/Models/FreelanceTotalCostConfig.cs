@@ -7,5 +7,7 @@
         public decimal Maximum { get; set; }    
 
 
+
+
     }
 }

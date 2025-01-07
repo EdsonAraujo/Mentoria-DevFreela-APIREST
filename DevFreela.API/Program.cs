@@ -1,4 +1,5 @@
 using DevFreela.API.Models;
+using DevFreela.API.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.Configure<FreelanceTotalCostConfig>(
     );
 
 
+builder.Services.AddScoped<IConfigService, ConfigService>();
 
 
 builder.Services.AddControllers();

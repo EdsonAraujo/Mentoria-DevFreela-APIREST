@@ -1,5 +1,6 @@
 ﻿
 using DevFreela.API.Models;
+using DevFreela.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
@@ -9,13 +10,33 @@ namespace DevFreela.API.Controllers
     [ApiController]
     [Route("api/projects")]
 
-    public class ProjectsController :ControllerBase
+    public class ProjectsController : ControllerBase
     {
         private readonly FreelanceTotalCostConfig _config;
-        public ProjectsController(IOptions<FreelanceTotalCostConfig> options)
+        private readonly IConfigService _configService;
+        public ProjectsController(IOptions<FreelanceTotalCostConfig> options,
+            IConfigService configService)
         {
-          //  dsdasd
+            _config = options.Value;
+            _configService = configService;
+
+
+
         }
+
+        [HttpPut("{id}/cover")]
+        public IActionResult PostProfilePicture(IFormFile file)
+        {
+            var description = $"File: {file.FileName}, Size: {file.Length}";
+
+            // Processar Imagem 
+            return Ok(description);
+
+        }
+
+
+
+
 
 
 
@@ -23,9 +44,9 @@ namespace DevFreela.API.Controllers
         // GET api/projects?search=crm
 
         [HttpGet]
-        public IActionResult Get(string search)
+        public IActionResult Get(string search = "")
         {
-            return Ok();
+            return Ok(_configService.GetValue());
 
         }
 
@@ -43,7 +64,11 @@ namespace DevFreela.API.Controllers
         [HttpPost]
         public IActionResult Post(CreateProjectInputModel model)
         {
+            if (model.TotalCost < _config.Minimum || model.TotalCost > _config.Maximum)
+            {
+                return BadRequest("Número fora dos limites");
 
+            }
             return CreatedAtAction(nameof(GetById), new { id = 1 }, model);
         }
 

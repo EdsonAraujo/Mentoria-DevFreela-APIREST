@@ -12,6 +12,14 @@ builder.Services.Configure<FreelanceTotalCostConfig>(
     );
 
 
+
+builder.Services.Configure<OpeningTimeOption>(
+    builder.Configuration.GetSection("OpeningTime")
+    );
+
+
+
+
 builder.Services.AddScoped<IConfigService, ConfigService>();
 
 

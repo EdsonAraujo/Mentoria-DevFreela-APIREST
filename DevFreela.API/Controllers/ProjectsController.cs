@@ -12,17 +12,31 @@ namespace DevFreela.API.Controllers
 
     public class ProjectsController : ControllerBase
     {
+
+        //private readonly FreelanceTotalCostConfig _config;
+        //private readonly IConfigService _configService;
+        //public ProjectsController(IOptions<FreelanceTotalCostConfig> options,
+        //    IConfigService configService)
+        //{
+        //    _config = options.Value;
+        //    _configService = configService;
+
+        //}
+
+
         private readonly FreelanceTotalCostConfig _config;
+        private readonly OpeningTimeOption _time;
         private readonly IConfigService _configService;
-        public ProjectsController(IOptions<FreelanceTotalCostConfig> options,
-            IConfigService configService)
+
+        public ProjectsController(IOptions<FreelanceTotalCostConfig> freelanceOptions,
+                                  IOptions<OpeningTimeOption> openingTimeOptions,
+                                  IConfigService configService)
         {
-            _config = options.Value;
+            _config = freelanceOptions.Value;
+            _time = openingTimeOptions.Value;
             _configService = configService;
-
-
-
         }
+
 
         [HttpPut("{id}/cover")]
         public IActionResult PostProfilePicture(IFormFile file)

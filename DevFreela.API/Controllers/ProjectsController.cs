@@ -49,6 +49,8 @@ namespace DevFreela.API.Controllers
         }
 
 
+      
+        
 
 
 
@@ -115,6 +117,16 @@ namespace DevFreela.API.Controllers
             return NoContent();
         }
 
+
+        [HttpPut("{id}/finish")]
+
+        public IActionResult Finish (int id) 
+        {
+            return NoContent();
+        }
+
+
+        
         //PUT api/projetc/1234/complete
         [HttpPut("{id}/complete")]
         public IActionResult Complete(int id)
@@ -124,13 +136,19 @@ namespace DevFreela.API.Controllers
 
 
 
-        //POST api/projects/1234/comments
+        //POST api/projects/1/comments
         [HttpPost("{id}/comments")]
         public IActionResult PostComment(int id, CreateProjectCommentInputModel model)
         {
 
-            return Ok();
+            return NoContent();
         }
+
+
+
+
+
+
 
 
     }

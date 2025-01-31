@@ -20,6 +20,7 @@ builder.Services.Configure<OpeningTimeOption>(
 
 
 
+
 builder.Services.AddScoped<IConfigService, ConfigService>();
 
 

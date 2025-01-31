@@ -135,7 +135,6 @@ namespace DevFreela.API.Controllers
         }
 
 
-
         //POST api/projects/1/comments
         [HttpPost("{id}/comments")]
         public IActionResult PostComment(int id, CreateProjectCommentInputModel model)

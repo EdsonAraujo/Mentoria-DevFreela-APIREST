@@ -146,10 +146,5 @@ namespace DevFreela.API.Controllers
 
 
 
-
-
-
-
-
     }
 }
